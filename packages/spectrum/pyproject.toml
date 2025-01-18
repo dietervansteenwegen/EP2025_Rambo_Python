@@ -1,0 +1,52 @@
+[project]
+name = "spectrum"
+description = "Mini projet pour manipuler un spectre énergétique."
+readme = "README.md"
+license = "LGPL-3.0+"
+authors = [
+    { name = "GAFFIOT_Jonathan", email = "j.gaffiot@laposte.net" },
+    { name = "LENORMAND_Julien", email = "lenormand.julien0@gmail.com"}
+]
+dynamic= ["version"]
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.2.2",
+    "pandas>=2.2.3",
+    "path>=17.1.0",
+    "plotly>=5.24.1",
+    "scipy>=1.15.1",
+]
+
+[build-system]
+requires = ["hatchling", "versioningit"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "versioningit"
+
+[tool.hatch.build.targets.sdist]
+include = ["src/spectrum"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/spectrum"]
+
+[tool.versioningit]
+
+[tool.versioningit.vcs]
+match = ["spectrum/v*"]
+default-tag = "0.0.0"
+
+[tool.versioningit.tag2version]
+rmprefix = "spectrum/v"
+
+[tool.versioningit.write]
+file = "src/spectrum/__version__.py"
+
+
+[tool.uv]
+package=true
+
+[dependency-groups]
+dev = [
+    "pandas-stubs>=2.2.3.241126",
+]
