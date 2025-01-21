@@ -1,93 +1,82 @@
-# python-royal
-
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/jgaffiot1/python-royal.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/jgaffiot1/python-royal/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+# Python Royal
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Support pour le workshop Python Royal du SnowCamp 2025.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Objectifs
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Apprendre à faire du code Python stylé et robuste !
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Python a la réputation de ne pas être axé sur la qualité logicielle. 
+C’était vrai il y a 20 ans, mais depuis de grands noms se sont bâtis sur ce langage :
+Instagram, Spotify, Reddit, Dropbox...
+Pour arriver à allier Fiabilité, Maintenabilité, Évolutivité et Sécurité (= la fameuse
+Qualité), il faut apprendre le fonctionnement du langage et de son écosystème.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Découvrons ensemble la structure d'un projet Python, les principes du langage à 
+respecter, l'outillage à mettre en place et les pratiques à adopter pour travailler
+en Python avec une qualité industrielle. 
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Prérequis
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- avoir les bases en Python
+- pouvoir installer des logiciels sur sa machine (accès réseau et droits)
+- un shell
+- si possible un compte GitLab ou GitHub
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Déroulement
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Il y a des fichiers de détecteur de rayon X/gamma sur ce repo, affichons-les !
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+- [ ] Créer un projet sur son compte perso GitHub ou Gitlab
+- [ ] Cloner le projet sur sa machine perso
+- [ ] Installer uv
+- [ ] Initier un nouveau projet avec uv
+- [ ] Remplir le `pyproject.toml`
+- [ ] Ajouter une dépendance : [Streamlit](https://streamlit.io/)
+- [ ] Afficher le hello world Streamlit
+- [ ] Ajouter de nouvelles dépendances : pandas et plotly
+- [ ] Charger un fichier et afficher la courbe avec Streamlit
 
-## License
-For open source projects, say how it is licensed.
+Et maintenant, un peu d'outillage.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+- [ ] Installer ruff, mypy et pytest en dépendance de dev
+- [ ] Formatter son code avec ruff
+- [ ] Analyser son code avec ruff
+- [ ] Vérifier les types avec mypy
+- [ ] Écrire un test avec pytest
+- [ ] Intégrer ces pratiques dans son workflow avec son IDE
+
+Publions ce code.
+
+- [ ] Créer une release et son tag sur Git(Hub|Lab)
+- [ ] Créer un paquet (formats sdist et wheel) avec uv
+- [ ] Intégrer le tag dans le paquet avec versioningit
+- [ ] Publier ce code sur le package registry de Git(Hub|Lab)
+- [ ] (en option, construire une image Docker contenant le code et la publier)
+
+Automatisons un peu tout ça.
+
+- [ ] Vérifier le code avec de commiter avec pre-commit
+- [ ] Uniformiser le workflow avec Doit (voire Make)
+- [ ] Lancer la vérification automatique avec GitLab CI / GitHub Actions
+
+Et quand même documentons.
+
+- [ ] Installer sphinx en dev
+- [ ] Construire la base de sa documentation
+- [ ] Extraire les docstrings et les intégrer avec apidoc
+
+Continuer l'application tant qu'on peut !
+
+- [ ] Ajouter un champ pour charger un fichier de données
+- [ ] Extraire le temps d'acquisition et afficher les courbes en impact/s
+- [ ] Ajouter une page de recherche de pics sur les courbes
+- [ ] Étalonner les courbes en énergie à partir des courbes de références
+  (Na22, Cs137, Co60)
+- [ ] Refactoriser en séparant affichage, lecture de données, et traitement
+- [ ] Enregistrer les valeurs d'étalonnage dans l'état de l'application et les utiliser
+  pour toutes les courbes
+- [ ] Ajouter un champ optionnel pour charger un second fichier à soustraire au premier
+- [ ] Ajuster les couleurs, ajouter un logo (CSS en option)
