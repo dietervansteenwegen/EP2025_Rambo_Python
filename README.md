@@ -29,8 +29,9 @@ en Python avec une qualité industrielle.
 
 Il y a des fichiers de détecteur de rayon X/gamma sur ce repo, affichons-les !
 
-- [ ] Créer un projet sur son compte perso GitHub ou Gitlab
-- [ ] Cloner le projet sur sa machine perso
+- [ ] Forker le projet [GitLab](https://gitlab.com/jgaffiot1/python-royal)
+      ou [GitHub](https://github.com/Lenormju/python-royal) sur son compte perso
+- [ ] Cloner le fork sur sa machine perso
 - [ ] Installer uv
 - [ ] Initier un nouveau projet avec uv
 - [ ] Remplir le `pyproject.toml`
@@ -58,7 +59,7 @@ Publions ce code.
 
 Automatisons un peu tout ça.
 
-- [ ] Vérifier le code avec de commiter avec pre-commit
+- [ ] Vérifier le code avant de commiter avec pre-commit
 - [ ] Uniformiser le workflow avec Doit (voire Make)
 - [ ] Lancer la vérification automatique avec GitLab CI / GitHub Actions
 
