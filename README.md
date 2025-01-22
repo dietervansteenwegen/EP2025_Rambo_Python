@@ -81,3 +81,38 @@ Continuer l'application tant qu'on peut !
   pour toutes les courbes
 - [ ] Ajouter un champ optionnel pour charger un second fichier à soustraire au premier
 - [ ] Ajuster les couleurs, ajouter un logo (CSS en option)
+
+## Données
+
+Les données proviennent d'un capteur de rayonnement X et gamma (la version plus
+énergétique des X), utilisé pour mesurer la radioactivité résiduelle d'échantillons
+qu'on espère très purs, donc de très faibles radioactivités.
+
+Il fonctionne sur un principe proche des panneaux solaires, mais au lieu d'être exposé
+à une quantité astronomique de photons optiques, il ne reçoit qu'un photon X ou gamma
+de temps en temps. Le capteur ne donne donc pas un courant continu comme le panneau
+solaire, mais de petits pics quand par hasard un photon X ou gamma tape dedans.
+La hauteur du pic nous donne l'énergie du photon qui a impacté le capteur.
+
+Sauf que le capteur enregistre ces hauteurs de façon très, très brute. Il se contente
+de compter les hauteurs sur une échelle allant de 1 à 16384. Ce ne sont même pas des
+volts ou une unité d'énergie, juste le nombre de canaux du convertisseur
+analogique/numérique, qui code les hauteurs sur 14 bits (16384=2^14).
+Comme le capteur ne fait que compter les impacts, il faut tenir compte manuellement
+du temps d'enregistrement pour savoir si l'échantillon était peu ou beaucoup radioactif
+(combien d'impact en 1 heure par exemple ?).
+
+Pour retrouver l'échelle d'énergie, on place devant le capteur des éléments radioactifs
+connus, donc on connait l'énergie des pics (keV=une unité d'énergie) :
+
+- Cobalt 60 (Co60) : 2 pics à 1173.2 keV et 1332.5 keV
+- Sodium 22 (Na22) : 2 pics à 511 keV et 1274.5 keV
+- Césium 137 (CS137) : pic à 661.7 keV
+
+Enfin, les photons X ou gamma peuvent venir de l'échantillon ou de l'environnement, qui
+est toujours un peu radioactif. Pour en tenir compte, il faut soustraire à la mesure
+d'un échantillon la mesure de la radioactivité de l'environnement, qu'on appelle
+le bruit de fond (background en anglais). On a des mesures de deux échantillons :
+"pmt" et "steel", et deux bruits de fond : "bkg" et "bkg2".
+
+À vos claviers !
