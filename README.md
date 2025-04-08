@@ -1,5 +1,12 @@
 # Python Royal
 
+[![Project management: uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![Code style & Static analysis: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Type check: Mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
+[![Pipeline status](https://gitlab.com/jgaffiot1/python-royal/badges/app-demo/pipeline.svg)](https://gitlab.com/jgaffiot1/python-royal/-/commits/app-demo)
+[![Coverage report](https://gitlab.com/jgaffiot1/python-royal/badges/app-demo/coverage.svg)](https://gitlab.com/jgaffiot1/python-royal/-/commits/app-demo)
+[![Latest release](https://gitlab.com/jgaffiot1/python-royal/-/badges/release.svg)](https://gitlab.com/jgaffiot1/python-royal/-/releases)
+
 ## Description
 
 Support pour le workshop Python Royal du SnowCamp 2025.
@@ -8,15 +15,15 @@ Support pour le workshop Python Royal du SnowCamp 2025.
 
 Apprendre à faire du code Python stylé et robuste !
 
-Python a la réputation de ne pas être axé sur la qualité logicielle. 
+Python a la réputation de ne pas être axé sur la qualité logicielle.
 C’était vrai il y a 20 ans, mais depuis de grands noms se sont bâtis sur ce langage :
 Instagram, Spotify, Reddit, Dropbox...
 Pour arriver à allier Fiabilité, Maintenabilité, Évolutivité et Sécurité (= la fameuse
 Qualité), il faut apprendre le fonctionnement du langage et de son écosystème.
 
-Découvrons ensemble la structure d'un projet Python, les principes du langage à 
+Découvrons ensemble la structure d'un projet Python, les principes du langage à
 respecter, l'outillage à mettre en place et les pratiques à adopter pour travailler
-en Python avec une qualité industrielle. 
+en Python avec une qualité industrielle.
 
 ## Prérequis
 

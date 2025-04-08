@@ -1,0 +1,135 @@
+name: Sample CI using GitHub (Workflow) Actions for Python projects
+
+# cf https://docs.astral.sh/uv/guides/integration/github/
+
+# FIXME: find a way to publish separately both packages
+# Contrary to GitLab, there is no Python package registry associated with
+# repositories, so the only way to release a new version is through the GitHub
+# Release mechanism. Although it could be possible to release both packages
+# with different tags, it would not be possible to fetch the latest release
+# for each (and even less `pip install` them).
+# Instead, we are currently creating bundled releases, containing both packages
+# so that it makes no sense to filter on their respective tags, or to try to
+# give meaningful name to Releases.
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    # no "tags" rules
+  pull_request: {}  # any types: opened, closed, milestoned, ..., from any branches
+  workflow_dispatch: {}  # manual trigger
+
+jobs:
+  dump_contexts_to_log:  # cf https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#example-printing-context-information-to-the-log
+    runs-on: ubuntu-latest
+    if: false  # use for debugging
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
+
+  lint_and_test:
+    runs-on: ubuntu-latest  # for free GitHub runners, has to run on basic VMs, see https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: 0.5.21  # latest as of 2025-01-20
+    - name: Set up Python
+      run: uv python install  # according to the project requirements (`.python-version` or `pyproject.toml`)
+    - name: Install the project with its dev tools
+      run: uv sync --frozen --extra dev
+    - name: Check pre-requisites
+      run: |
+        uv --version
+        uv run python --version
+        git --version
+    - name: Format, lint and typecheck the code
+      run: |
+        uv run ruff format .
+        uv run ruff check .
+        uv run mypy .
+        uv run pytest
+    - name: Lint the Dockerfile
+      uses: hadolint/hadolint-action@v3.1.0  # latest as of 2025-01-20
+    - name: Run the tests
+      run: |
+        uv run doit test
+        # TODO: add doctest
+    - name: Prepare report
+      run: |
+        mkdir -p report/coverage
+        mv .pytest_cache/pytest_report.html .pytest_cache/assets/ report/
+        mv .coverage/html_output/ report/coverage
+        uv cache prune --ci
+    - name: Archive the test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-report
+        path: report
+
+  build_and_publish:
+    # FIXME: currently running on each push on the main branch, instead of specific "release" tags
+    if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'master')
+    needs: lint_and_test
+    runs-on: ubuntu-latest  # for free GitHub runners, has to run on basic VMs, see https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+    permissions:
+      contents: write  # allow to use the secrets.GITHUB_TOKEN to create a Release
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: 0.5.21  # latest as of 2025-01-20
+      - name: Set up Python
+        run: uv python install  # according to the project requirements (`.python-version` or `pyproject.toml`)
+      - name: Build the packages
+        run: |
+          cd packages/spectrum
+          uv build
+          cd ../x_viz
+          uv build
+          cd ../..
+          # both build into repo_root/dist
+      - name: Archive the build results
+        # as of 2025-01-20, there is no plan for GitHub to support Python package registries, so we have to do a full release instead
+        # cf https://github.com/orgs/community/discussions/8542
+        uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: dist
+      - name: Publish the packages as a GitHub Release
+        uses: actions/create-release@v1.1.4  # latest as of 2025-01-20, /!\ unmaintained since 2021
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_id }}  # FIXME: this pseudo-ensures unique names for Releases, but they are meaningless
+          release_name: Release from CI for ${{ github.ref_name }} ${{ github.sha }}
+          body: TODO  # or use "body_path" to provide a file (per-version changelog ?)
+          draft: false
+          prerelease: false
+          # leaving defaults for the rest (commitish, owner and repo)

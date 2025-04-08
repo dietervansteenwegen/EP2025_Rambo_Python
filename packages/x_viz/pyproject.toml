@@ -1,0 +1,49 @@
+[project]
+name = "x-viz"
+description = "Affiche et analyse des spectres énergétiques."
+readme = "README.md"
+license = "LGPL-3.0+"
+authors = [
+    { name = "GAFFIOT_Jonathan", email = "j.gaffiot@laposte.net" },
+    { name = "LENORMAND_Julien", email = "lenormand.julien0@gmail.com"}
+]
+dynamic= ["version"]
+requires-python = ">=3.13"
+dependencies = [
+    "ruamel-yaml>=0.18.10",
+    "streamlit>=1.41.1",
+    "spectrum",
+]
+
+[project.scripts]
+x_viz = "src.main:main"
+
+
+[build-system]
+requires = ["hatchling", "versioningit"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "versioningit"
+
+[tool.hatch.build.targets.sdist]
+include = ["src/"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/"]
+
+[tool.versioningit]
+
+[tool.versioningit.vcs]
+match = ["x-viz/v*"]
+default-tag = "0.0.0"
+
+[tool.versioningit.tag2version]
+rmprefix = "x-viz/v"
+
+[tool.versioningit.write]
+file = "src/__version__.py"
+
+
+[tool.uv]
+package=true
