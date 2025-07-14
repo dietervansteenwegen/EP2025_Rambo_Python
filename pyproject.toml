@@ -2,7 +2,7 @@
 name = "python-royal"
 description = "A reference project for the Python Royal university at SnowCamp 2025."
 readme = "README.md"
-license = "LGPL-3.0+"
+license = "MIT"
 authors = [
     { name = "GAFFIOT_Jonathan", email = "j.gaffiot@laposte.net" },
     { name = "LENORMAND_Julien", email = "lenormand.julien0@gmail.com"}
